@@ -1,8 +1,8 @@
-package dev.hely.lib.manager;
+package dev.hely.lib.handler;
 
 import dev.hely.lib.example.ExampleJavaPlugin;
-import dev.hely.lib.handler.Handler;
-import dev.hely.lib.manager.example.ExampleHandler;
+import dev.hely.lib.handler.example.ExampleHandler;
+import dev.hely.lib.manager.Manager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;

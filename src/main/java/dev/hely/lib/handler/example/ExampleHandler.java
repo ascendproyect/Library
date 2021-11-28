@@ -1,4 +1,4 @@
-package dev.hely.lib.manager.example;
+package dev.hely.lib.handler.example;
 
 import dev.hely.lib.Messages;
 import dev.hely.lib.handler.Handler;

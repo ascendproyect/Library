@@ -1,7 +1,7 @@
 package dev.hely.lib.example;
 
 import com.google.common.collect.ImmutableList;
-import dev.hely.lib.manager.HandlerManager;
+import dev.hely.lib.handler.HandlerManager;
 import dev.hely.lib.manager.Manager;
 import dev.hely.lib.menu.MenuManager;
 import org.bukkit.plugin.java.JavaPlugin;
