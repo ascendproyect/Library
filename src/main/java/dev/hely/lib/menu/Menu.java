@@ -47,7 +47,7 @@ public abstract class Menu {
 
             if (itemMeta != null) {
                 if (itemMeta.hasDisplayName()) {
-                    itemMeta.setDisplayName(itemMeta.getDisplayName() + "§b§c§d§e");
+                    itemMeta.setDisplayName(itemMeta.getDisplayName());
                 }
             }
 
