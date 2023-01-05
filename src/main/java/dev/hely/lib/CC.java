@@ -38,9 +38,6 @@ public class CC {
         ARROW_RIGHT = '\u00BB';
     }
 
-
-    public static Enchantment FAKE_GLOW;
-
     public static String translate(String input) {
         assertNotNull(input);
         return ChatColor.translateAlternateColorCodes('&', input);
@@ -55,10 +52,5 @@ public class CC {
 
     public static String capitalize(String string) {
         return String.valueOf(string.charAt(0)).toUpperCase() + string.substring(1);
-    }
-
-
-    static {
-        FAKE_GLOW = new FakeGlow(70);
     }
 }

@@ -1,0 +1,4 @@
+name: Library
+version: 2.0-SNAPSHOT
+author: Hely Development
+main: dev.hely.lib.example.ExampleJavaPlugin

@@ -2,6 +2,7 @@ package dev.hely.lib.maker;
 
 import com.google.common.collect.Lists;
 import dev.hely.lib.CC;
+import dev.hely.lib.FakeGlow;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -152,10 +153,11 @@ public class ItemMaker {
         return this;
     }
 
-    public ItemMaker setFakeGlow() {
+
+    public ItemMaker addFakeGlow() {
         ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.addEnchant(CC.FAKE_GLOW, 2, true);
-        
+        itemMeta.addEnchant(FakeGlow.FAKE_GLOW, 2, true);
+
         itemStack.setItemMeta(itemMeta);
         return this;
     }

@@ -37,4 +37,8 @@ public class ExampleJavaPlugin extends JavaPlugin {
     public void onDisable() {
         managerList.forEach(manager -> manager.onDisable(this));
     }
+
+    public void addManager(Manager manager) {
+        this.managerList.add(manager);
+    }
 }

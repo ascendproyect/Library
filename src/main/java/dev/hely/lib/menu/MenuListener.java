@@ -31,6 +31,10 @@ public class MenuListener implements Listener {
 
             if (openMenu != null) {
                 if (slot != event.getRawSlot()) {
+                    openMenu.onClickPlayerInventory(player, event.getSlot(), event.getClick());
+                    if (event.getClick() == ClickType.SHIFT_LEFT || event.getClick() == ClickType.SHIFT_RIGHT) {
+                        event.setCancelled(true);
+                    }
                     return;
                 }
 
