@@ -1,10 +1,11 @@
 package dev.hely.lib.menu;
 
 import dev.hely.lib.CC;
-import dev.hely.lib.example.ExampleJavaPlugin;
+import dev.hely.lib.example.Example;
 import dev.hely.lib.menu.button.Button;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -36,7 +37,8 @@ public abstract class Menu {
 
     private Map<Integer, Button> menuContent = new ConcurrentHashMap<>();
 
-    public abstract String getName(Player player);
+    public abstract String getName();
+    public abstract String getTitle(Player player);
 
     public abstract Map<Integer, Button> getMenuContent(Player player);
 
@@ -65,7 +67,7 @@ public abstract class Menu {
         Inventory inventory = null;
         int size = getSize() == -1 ? getSite(menuContent) : getSize();
         boolean update = false;
-        String name = CC.translate(getName(player));
+        String name = CC.translate(getTitle(player));
 
         if (name.length() > 32) {
             name = name.substring(0, 32);
@@ -91,7 +93,7 @@ public abstract class Menu {
         }
 
         if (inventory == null) {
-            inventory = ExampleJavaPlugin.INSTANCE.getServer().createInventory(player, size, name);
+            inventory = Bukkit.getServer().createInventory(player, size, name);
         }
 
         inventory.clear();
@@ -122,7 +124,7 @@ public abstract class Menu {
 
         if (autoUpdate) {
             if (bukkitTask == null) {
-                bukkitTask = ExampleJavaPlugin.INSTANCE.getServer().getScheduler().runTaskTimer(ExampleJavaPlugin.INSTANCE, () -> openMenu(player), 20L, 20L);
+                bukkitTask = Bukkit.getServer().getScheduler().runTaskTimer(Example.INSTANCE, () -> openMenu(player), 20L, 20L);
             }
         }
     }

@@ -1,4 +1,4 @@
-package dev.hely.lib;
+package dev.hely.lib.util;
 
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;

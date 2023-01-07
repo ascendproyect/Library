@@ -21,7 +21,12 @@ public class GlobalPageMenu extends Menu {
     private final PaginatedMenu menu;
 
     @Override
-    public String getName(Player player) {
+    public String getName() {
+        return "Global Page Menu";
+    }
+
+    @Override
+    public String getTitle(Player player) {
         return "Jump to Page";
     }
 

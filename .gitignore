@@ -10,6 +10,7 @@ dependency-reduced-pom.xml
 *.ipr
 *.iws
 .idea/
+*.md
 
 Library.iml
 *.log

@@ -1,6 +1,6 @@
 package dev.hely.lib.handler;
 
-import dev.hely.lib.example.ExampleJavaPlugin;
+import dev.hely.lib.example.Example;
 import dev.hely.lib.handler.example.ExampleHandler;
 import dev.hely.lib.manager.Manager;
 import org.bukkit.Bukkit;
@@ -27,7 +27,7 @@ public enum HandlerManager implements Manager {
 
         this.handlersStorage.add(new ExampleHandler());
 
-        this.handlersStorage.stream().filter(handler -> handler instanceof Listener).forEach(handler -> Bukkit.getPluginManager().registerEvents((Listener) handler, ExampleJavaPlugin.INSTANCE));
+        this.handlersStorage.stream().filter(handler -> handler instanceof Listener).forEach(handler -> Bukkit.getPluginManager().registerEvents((Listener) handler, Example.INSTANCE));
         Bukkit.getConsoleSender().sendMessage("[" + plugin.getDescription().getName() +"] Loading " + this.handlersStorage.size() + " handlers.");
     }
 

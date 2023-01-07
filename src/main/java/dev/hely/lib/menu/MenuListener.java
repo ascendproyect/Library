@@ -1,6 +1,6 @@
 package dev.hely.lib.menu;
 
-import dev.hely.lib.example.ExampleJavaPlugin;
+import dev.hely.lib.example.Example;
 import dev.hely.lib.menu.button.Button;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,9 +32,7 @@ public class MenuListener implements Listener {
             if (openMenu != null) {
                 if (slot != event.getRawSlot()) {
                     openMenu.onClickPlayerInventory(player, event.getSlot(), event.getClick());
-                    if (event.getClick() == ClickType.SHIFT_LEFT || event.getClick() == ClickType.SHIFT_RIGHT) {
-                        event.setCancelled(true);
-                    }
+                    event.setCancelled(true);
                     return;
                 }
 
@@ -66,7 +64,7 @@ public class MenuListener implements Listener {
                             public void run() {
                                 player.updateInventory();
                             }
-                        }.runTaskLaterAsynchronously(ExampleJavaPlugin.INSTANCE, 5L);
+                        }.runTaskLaterAsynchronously(Example.INSTANCE, 5L);
                     }
                 }
             }

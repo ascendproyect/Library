@@ -1,6 +1,7 @@
 package dev.hely.lib.example;
 
 import com.google.common.collect.ImmutableList;
+import dev.hely.lib.command.CommandManager;
 import dev.hely.lib.handler.HandlerManager;
 import dev.hely.lib.manager.Manager;
 import dev.hely.lib.menu.MenuManager;
@@ -9,26 +10,23 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.List;
 
 /**
- * Created By LeandroSSJ
- * Created on 28/11/2021
- */
-public class ExampleJavaPlugin extends JavaPlugin {
+ * @Author Joako
+ * @Date 6/1/2023 | 21:55
+ **/
 
-    public static ExampleJavaPlugin INSTANCE;
+public class Example extends JavaPlugin {
 
+    public static Example INSTANCE;
     private List<Manager> managerList;
-
-    @Override
-    public void onLoad() {
-        managerList = ImmutableList.of(
-                MenuManager.INSTANCE,
-                HandlerManager.INSTANCE
-        );
-    }
 
     @Override
     public void onEnable() {
         INSTANCE = this;
+        managerList = ImmutableList.of(
+                MenuManager.INSTANCE,
+                HandlerManager.INSTANCE,
+                CommandManager.INSTANCE
+        );
 
         managerList.forEach(manager -> manager.onEnable(this));
     }
@@ -36,9 +34,5 @@ public class ExampleJavaPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         managerList.forEach(manager -> manager.onDisable(this));
-    }
-
-    public void addManager(Manager manager) {
-        this.managerList.add(manager);
     }
 }

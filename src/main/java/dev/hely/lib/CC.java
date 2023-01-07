@@ -1,9 +1,7 @@
 package dev.hely.lib;
 
-import dev.hely.lib.util.FakeGlow;
 import lombok.experimental.UtilityClass;
 import org.bukkit.ChatColor;
-import org.bukkit.enchantments.Enchantment;
 
 import java.util.List;
 import java.util.stream.Collectors;

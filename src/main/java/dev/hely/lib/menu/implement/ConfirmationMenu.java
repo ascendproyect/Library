@@ -22,8 +22,14 @@ public class ConfirmationMenu extends Menu {
     private final String name;
     private final Callback<Boolean> callback;
 
+
     @Override
-    public String getName(Player player) {
+    public String getName() {
+        return "Confirmation Menu";
+    }
+
+    @Override
+    public String getTitle(Player player) {
         return name;
     }
 
