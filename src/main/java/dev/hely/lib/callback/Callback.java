@@ -1,4 +1,4 @@
-package dev.hely.lib;
+package dev.hely.lib.callback;
 
 import java.io.Serializable;
 

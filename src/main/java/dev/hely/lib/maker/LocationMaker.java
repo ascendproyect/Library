@@ -23,12 +23,10 @@ public class LocationMaker {
         loc.setPitch(pitch);
         return loc;
     }
+
     public static String stringifyLocation(Location location) {
         if (location == null) return "unset";
 
         return "[" + location.getWorld().getName() + "," + location.getX() + "," + location.getY() + "," + location.getZ() + "," + location.getYaw() + "," + location.getPitch() + "]";
     }
-
-
-
 }

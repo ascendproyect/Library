@@ -1,5 +1,6 @@
 package dev.hely.lib;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.enchantments.EnchantmentWrapper;
@@ -17,8 +18,12 @@ public class FakeGlow extends EnchantmentWrapper {
         FAKE_GLOW = new FakeGlow(70);
     }
 
+    public FakeGlow(String id) {
+        super(String.valueOf(NamespacedKey.minecraft(id)));
+    }
+
     public FakeGlow(int id) {
-        super(id);
+        super(String.valueOf(id));
     }
 
     @Override

@@ -1,11 +1,14 @@
 package dev.hely.lib.maker;
 
+import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.Lists;
 import dev.hely.lib.CC;
 import dev.hely.lib.FakeGlow;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -15,23 +18,32 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static dev.hely.lib.Assert.assertNotNull;
-import static dev.hely.lib.Assert.assertPositive;
 import static dev.hely.lib.CC.translate;
 
 public class ItemMaker {
 
-
     public static ItemMaker of(Material material) {
-        return new ItemMaker(material, 1, (short) 0);
+        if (Bukkit.getVersion().contains("1.7")) {
+            return new ItemMaker(material, 1, (short) 0);
+        } else {
+            return new ItemMaker(XMaterial.matchXMaterial(material).parseMaterial(), 1, (short) 0);
+        }
     }
 
     public static ItemMaker of(Material material, int amount) {
-        return new ItemMaker(material, amount, (short) 0);
+        if (Bukkit.getVersion().contains("1.7")) {
+            return new ItemMaker(material, amount, (short) 0);
+        } else {
+            return new ItemMaker(XMaterial.matchXMaterial(material).parseMaterial(), amount, (short) 0);
+        }
     }
 
     public static ItemMaker of(Material material, int amount, int data) {
-        return new ItemMaker(material, amount, (short) data);
+        if (Bukkit.getVersion().contains("1.7")) {
+            return new ItemMaker(material, amount, (short) data);
+        } else {
+            return new ItemMaker(XMaterial.matchXMaterial(material).parseMaterial(), amount, (short) data);
+        }
     }
 
     public static ItemMaker copyOf(ItemStack itemStack) {
@@ -41,57 +53,43 @@ public class ItemMaker {
     private final ItemStack itemStack;
 
     private ItemMaker(ItemStack itemStack) {
-        assertNotNull(itemStack);
-
         this.itemStack = itemStack;
     }
 
     private ItemMaker(Material material, int amount, short data) {
-        assertNotNull(material);
-        assertPositive(amount, data);
-
-        this.itemStack = new ItemStack(material, amount, data);
+        if (Bukkit.getVersion().contains("1.7")) {
+            this.itemStack = new ItemStack(material, amount, data);
+        } else {
+            this.itemStack = new ItemStack(XMaterial.matchXMaterial(material).parseMaterial(), amount, data);
+        }
     }
 
     public ItemMaker setAmount(int amount) {
-        assertPositive(amount);
-
         itemStack.setAmount(amount);
-
         return this;
     }
 
     public ItemMaker setData(short data) {
-        assertPositive(data);
-
         itemStack.setDurability(data);
-
         return this;
     }
 
     public ItemMaker setDisplayName(String name) {
-        assertNotNull(name);
-
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(translate(name));
 
         itemStack.setItemMeta(itemMeta);
-
         return this;
     }
 
     public ItemMaker setLore(String... lore) {
-        assertNotNull(lore);
-
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setLore(Arrays.stream(lore).map(CC::translate).collect(Collectors.toList()));
 
         itemStack.setItemMeta(itemMeta);
-
         return this;
     }
     public ItemMaker addLore(String lores) {
-        assertNotNull(lores);
         ItemMeta itemMeta = itemStack.getItemMeta();
 
         List<String> lore = itemMeta.getLore();
@@ -103,29 +101,19 @@ public class ItemMaker {
         itemMeta.setLore(lore);
 
         itemStack.setItemMeta(itemMeta);
-
         return this;
     }
 
 
     public ItemMaker setLore(List<String> lore) {
-        assertNotNull(lore);
-
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setLore(lore.stream().map(CC::translate).collect(Collectors.toList()));
 
         itemStack.setItemMeta(itemMeta);
-
         return this;
     }
 
-
-
-
-
     public ItemMaker setOwner(String owner) {
-        assertNotNull(owner);
-
         ItemMeta itemMeta = itemStack.getItemMeta();
 
         if (itemMeta instanceof SkullMeta) {
@@ -139,8 +127,6 @@ public class ItemMaker {
     }
 
     public ItemMaker setColor(Color color) {
-        assertNotNull(color);
-
         ItemMeta itemMeta = itemStack.getItemMeta();
 
         if (itemMeta instanceof LeatherArmorMeta) {
@@ -153,34 +139,47 @@ public class ItemMaker {
         return this;
     }
 
+    public ItemMaker setFlags(ItemFlag... flags) {
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.addItemFlags(flags);
+
+        itemStack.setItemMeta(itemMeta);
+        return this;
+    }
+
+    public ItemMaker setCustomModelData(int data) {
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setCustomModelData(data);
+
+        itemStack.setItemMeta(itemMeta);
+        return this;
+    }
 
     public ItemMaker addFakeGlow() {
         ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.addEnchant(FakeGlow.FAKE_GLOW, 2, true);
+
+        if (Bukkit.getVersion().contains("1.7")) {
+            itemMeta.addEnchant(FakeGlow.FAKE_GLOW, 2, true);
+        } else {
+            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            itemStack.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
+        }
 
         itemStack.setItemMeta(itemMeta);
         return this;
     }
 
     public ItemMaker addEnchant(Enchantment enchantment, int level) {
-        assertNotNull(enchantment);
-        assertPositive(level);
-
         itemStack.addUnsafeEnchantment(enchantment, level);
-
         return this;
     }
 
     public ItemMaker removeEnchantment(Enchantment enchantment) {
-        assertNotNull(enchantment);
-
         itemStack.removeEnchantment(enchantment);
-
         return this;
     }
 
     public ItemStack build() {
         return itemStack.clone();
     }
-
 }

@@ -1,6 +1,7 @@
 package dev.hely.lib.menu.button;
 
 import dev.hely.lib.maker.ItemMaker;
+import dev.hely.lib.sound.SoundManager;
 import lombok.AllArgsConstructor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -37,8 +38,7 @@ public abstract class Button {
     public static Button getPlaceholder() {
         return new Button() {
             public ItemStack getItemStack(Player player) {
-                return ItemMaker.of(Material.STAINED_GLASS_PANE, 1, 7).setDisplayName(" ").build();
-            }
+                return ItemMaker.of(Material.valueOf("STAINED_GLASS_PANE"), 1, 7).setDisplayName(" ").build();            }
         };
     }
 
@@ -54,15 +54,15 @@ public abstract class Button {
     @AllArgsConstructor
     public enum Sound {
 
-        NEUTRAL(org.bukkit.Sound.CLICK),
 
-        NEGATIVE(org.bukkit.Sound.ANVIL_LAND),
-        AFFIRMATIVE(org.bukkit.Sound.LEVEL_UP);
+        NEUTRAL(org.bukkit.Sound.valueOf("CLICK")),
+        NEGATIVE(org.bukkit.Sound.valueOf("ANVIL_LAND")),
+        AFFIRMATIVE(org.bukkit.Sound.valueOf("LEVEL_UP"));
 
         private final org.bukkit.Sound sound;
 
         public void toPlayer(Player player) {
-            player.playSound(player.getLocation(), sound, 20F, 1F);
+            SoundManager.INSTANCE.playSound(player, sound.name());
         }
     }
 }

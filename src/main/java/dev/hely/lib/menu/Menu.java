@@ -2,6 +2,7 @@ package dev.hely.lib.menu;
 
 import dev.hely.lib.CC;
 import dev.hely.lib.example.Example;
+import dev.hely.lib.maker.ItemMaker;
 import dev.hely.lib.menu.button.Button;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,8 +45,9 @@ public abstract class Menu {
 
     private ItemStack getItemStack(Player player, Button button) {
         ItemStack itemStack = button.getItemStack(player);
+        ItemStack skullItem = ItemMaker.of(Material.valueOf("SKULL_ITEM")).build();
 
-        if (itemStack.getType() != Material.SKULL_ITEM) {
+        if (itemStack.getType() != skullItem.getType()) {
             ItemMeta itemMeta = itemStack.getItemMeta();
 
             if (itemMeta != null) {
@@ -80,9 +82,8 @@ public abstract class Menu {
                 Inventory topInventory = player.getOpenInventory().getTopInventory();
 
                 int previousSize = topInventory.getSize();
-                String previousName = topInventory.getName();
 
-                if (previousSize == size && previousName.equals(name)) {
+                if (player.getOpenInventory().getTitle().equals(name) && previousSize == size) {
                     inventory = player.getOpenInventory().getTopInventory();
                     update = true;
                 } else {

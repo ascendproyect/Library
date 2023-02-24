@@ -1,6 +1,6 @@
 package dev.hely.lib.menu.implement;
 
-import dev.hely.lib.Callback;
+import dev.hely.lib.callback.Callback;
 import dev.hely.lib.menu.Menu;
 import dev.hely.lib.menu.button.Button;
 import dev.hely.lib.menu.button.implement.ConfirmationButton;

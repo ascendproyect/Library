@@ -12,8 +12,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 
-import static dev.hely.lib.Assert.assertNotNull;
-
 @Getter
 public class Config {
 
@@ -21,8 +19,6 @@ public class Config {
     private YamlConfiguration configuration;
 
     public Config(JavaPlugin plugin, String name) {
-        assertNotNull(plugin, name);
-
         file = new File(plugin.getDataFolder(), name + ".yml");
         if (!file.exists()) {
             plugin.saveResource(name + ".yml", false);

@@ -12,11 +12,10 @@ import java.util.Arrays;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+/**
+ * @author ByJoako
+ **/
 public class Skull {
-
-    /**
-     * @author ByJoako
-     **/
 
     public static ItemStack create(String value){
         boolean newVersion = Arrays.stream(Material.values()).map(Material::name).collect(Collectors.toList()).contains("PLAYER_HEAD");
@@ -24,8 +23,10 @@ public class Skull {
         if (!newVersion) itemStack.setDurability((short) 3);
         if (value.isEmpty()) return itemStack;
         SkullMeta meta = (SkullMeta) itemStack.getItemMeta();
+
         GameProfile profile = new GameProfile(UUID.randomUUID(), null);
         profile.getProperties().put("textures", new Property("textures", value));
+
         try {
             Field field = meta.getClass().getDeclaredField("profile");
             field.setAccessible(true);
@@ -33,6 +34,7 @@ public class Skull {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
+
         itemStack.setItemMeta(meta);
         return  itemStack;
     }

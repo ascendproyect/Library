@@ -1,6 +1,6 @@
 package dev.hely.lib.menu.button.implement;
 
-import dev.hely.lib.Callback;
+import dev.hely.lib.callback.Callback;
 import dev.hely.lib.maker.ItemMaker;
 import dev.hely.lib.menu.button.Button;
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ public class ConfirmationButton extends Button {
 
     @Override
     public ItemStack getItemStack(Player player) {
-        return ItemMaker.of(Material.WOOL, 1, confirm ? 5 : 14)
+        return ItemMaker.of(Material.valueOf("WOOL"), 1, confirm ? 5 : 14)
                 .setDisplayName(confirm ? "&aConfirm" : "&cCancel").build();
     }
 

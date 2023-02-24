@@ -5,6 +5,7 @@ import dev.hely.lib.command.CommandManager;
 import dev.hely.lib.handler.HandlerManager;
 import dev.hely.lib.manager.Manager;
 import dev.hely.lib.menu.MenuManager;
+import dev.hely.lib.sound.SoundManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class Example extends JavaPlugin {
     public void onEnable() {
         INSTANCE = this;
         managerList = ImmutableList.of(
+                SoundManager.INSTANCE,
                 MenuManager.INSTANCE,
                 HandlerManager.INSTANCE,
                 CommandManager.INSTANCE

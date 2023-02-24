@@ -14,5 +14,4 @@ public class PluginUtil {
     public static boolean isEnabled(String name) {
         return Bukkit.getServer().getPluginManager().isPluginEnabled(name);
     }
-
 }

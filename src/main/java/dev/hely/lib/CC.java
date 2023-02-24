@@ -1,12 +1,10 @@
 package dev.hely.lib;
 
+import dev.hely.lib.color.IridiumColorAPI;
 import lombok.experimental.UtilityClass;
-import org.bukkit.ChatColor;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static dev.hely.lib.Assert.assertNotNull;
 
 /**
  * @author Leandro Figueroa (LeandroSSJ)
@@ -37,16 +35,12 @@ public class CC {
     }
 
     public static String translate(String input) {
-        assertNotNull(input);
-        return ChatColor.translateAlternateColorCodes('&', input);
+        return IridiumColorAPI.process(input);
     }
 
     public static List<String> translate(List<String> input) {
-        assertNotNull(input);
-
         return input.stream().map(CC::translate).collect(Collectors.toList());
     }
-
 
     public static String capitalize(String string) {
         return String.valueOf(string.charAt(0)).toUpperCase() + string.substring(1);

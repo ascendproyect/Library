@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 
 import java.lang.reflect.InvocationTargetException;
 
-import static dev.hely.lib.Assert.assertNotNull;
 import static dev.hely.lib.util.PluginUtil.isEnabled;
 
 /**
@@ -38,8 +37,6 @@ public class VersionUtil {
     }
 
     public static int getVersionOfPlayer(Player player) {
-        assertNotNull(player);
-
         if (v1_7_R4()) {
             try {
                 Class<?> aClass = Class.forName("org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer");
@@ -53,7 +50,7 @@ public class VersionUtil {
             } catch (ClassNotFoundException | NoSuchMethodException | NoSuchFieldException | InvocationTargetException | IllegalAccessException exception) {
                 exception.printStackTrace();
             }
-        } else if (v1_8_R3()) {
+        } else {
             if (isEnabled("ViaVersion")) {
                 return Via.getAPI().getPlayerVersion(player.getUniqueId());
             }
