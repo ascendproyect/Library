@@ -27,7 +27,7 @@ public enum HandlerManager implements Manager {
 
         this.handlersStorage.add(new ExampleHandler());
 
-        this.handlersStorage.stream().filter(handler -> handler instanceof Listener).forEach(handler -> Bukkit.getPluginManager().registerEvents((Listener) handler, Example.INSTANCE));
+        this.handlersStorage.stream().filter(handler -> handler instanceof Listener).forEach(handler -> Bukkit.getPluginManager().registerEvents((Listener) handler, plugin));
         Bukkit.getConsoleSender().sendMessage("[" + plugin.getDescription().getName() +"] Loading " + this.handlersStorage.size() + " handlers.");
     }
 

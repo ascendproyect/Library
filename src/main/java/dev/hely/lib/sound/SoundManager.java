@@ -23,8 +23,9 @@ public enum SoundManager implements Manager {
                 player.playSound(player.getLocation(), XSound.matchXSound(sound).get().parseSound(), 1.0f, 1.0f);
 
             }
+
         } catch (Exception exception) {
-            Bukkit.getConsoleSender().sendMessage("Invalid Sound Name: " + sound.toUpperCase());
+            Bukkit.getConsoleSender().sendMessage("[Library] Invalid Sound Name: " + sound.toUpperCase());
         }
     }
 }

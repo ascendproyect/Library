@@ -2,6 +2,7 @@ package dev.hely.lib.menu;
 
 import dev.hely.lib.example.Example;
 import dev.hely.lib.menu.button.Button;
+import lombok.AllArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -9,15 +10,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-
 
 /**
  * Created By LeandroSSJ
  * Created on 28/11/2021
  */
 
+@AllArgsConstructor
 public class MenuListener implements Listener {
+
+    private final JavaPlugin plugin;
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onInventoryClick(InventoryClickEvent event) {
@@ -64,7 +68,7 @@ public class MenuListener implements Listener {
                             public void run() {
                                 player.updateInventory();
                             }
-                        }.runTaskLaterAsynchronously(Example.INSTANCE, 5L);
+                        }.runTaskLaterAsynchronously(plugin, 5L);
                     }
                 }
             }

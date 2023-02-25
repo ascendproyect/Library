@@ -122,12 +122,6 @@ public abstract class Menu {
 
         onOpen(player);
         setClosed(false);
-
-        if (autoUpdate) {
-            if (bukkitTask == null) {
-                bukkitTask = Bukkit.getServer().getScheduler().runTaskTimer(Example.INSTANCE, () -> openMenu(player), 20L, 20L);
-            }
-        }
     }
 
     public int getSize() {

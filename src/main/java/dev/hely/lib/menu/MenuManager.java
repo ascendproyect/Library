@@ -22,6 +22,6 @@ public enum MenuManager implements Manager {
 
     @Override
     public void onEnable(JavaPlugin plugin) {
-        plugin.getServer().getPluginManager().registerEvents(new MenuListener(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new MenuListener(plugin), plugin);
     }
 }

@@ -17,12 +17,10 @@ import java.util.List;
 
 public class Example extends JavaPlugin {
 
-    public static Example INSTANCE;
     private List<Manager> managerList;
 
     @Override
     public void onEnable() {
-        INSTANCE = this;
         managerList = ImmutableList.of(
                 SoundManager.INSTANCE,
                 MenuManager.INSTANCE,
