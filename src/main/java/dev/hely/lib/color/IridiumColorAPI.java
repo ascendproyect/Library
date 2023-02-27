@@ -1,6 +1,5 @@
 package dev.hely.lib.color;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
 import dev.hely.lib.color.patterns.GradientPattern;
 import dev.hely.lib.color.patterns.Pattern;
@@ -12,7 +11,6 @@ import org.bukkit.Bukkit;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -23,11 +21,21 @@ public class IridiumColorAPI {
 
 
     /**
+     * The current version of the server in the a form of a major version.
+     * If the static initialization for this fails, you know something's wrong with
+     * the server software.
+     *
+     * @since 1.0.0
+     */
+    private static final int VERSION = getVersion();
+
+    /**
      * Cached result if the server version is after the v1.16 RGB update.
      *
      * @since 1.0.0
      */
-    private static final boolean SUPPORTS_RGB = XMaterial.getVersion() >= 16;
+    private static final boolean SUPPORTS_RGB = VERSION >= 16;
+
     private static final List<String> SPECIAL_COLORS = Arrays.asList("&l", "&n", "&o", "&k", "&m", "§l", "§n", "§o", "§k", "§m");
 
     /**
@@ -271,5 +279,33 @@ public class IridiumColorAPI {
             }
         }
         return COLORS.get(nearestColor);
+    }
+
+    /**
+     * Gets a simplified major version (..., 9, 10, ..., 14).
+     * In most cases, you shouldn't be using this method.
+     *
+     * @return the simplified major version.
+     * @since 1.0.0
+     */
+    private static int getVersion() {
+        String version = Bukkit.getVersion();
+        Validate.notEmpty(version, "Cannot get major Minecraft version from null or empty string");
+
+        // getVersion()
+        int index = version.lastIndexOf("MC:");
+        if (index != -1) {
+            version = version.substring(index + 4, version.length() - 1);
+        } else if (version.endsWith("SNAPSHOT")) {
+            // getBukkitVersion()
+            index = version.indexOf('-');
+            version = version.substring(0, index);
+        }
+
+        // 1.13.2, 1.14.4, etc...
+        int lastDot = version.lastIndexOf('.');
+        if (version.indexOf('.') != lastDot) version = version.substring(0, lastDot);
+
+        return Integer.parseInt(version.substring(2));
     }
 }

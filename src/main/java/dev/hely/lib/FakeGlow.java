@@ -1,29 +1,14 @@
 package dev.hely.lib;
 
-import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * @Author Joako
- * @Date 5/1/2023 | 11:36
- **/
-
 public class FakeGlow extends EnchantmentWrapper {
-    public static Enchantment FAKE_GLOW;
-
-    static {
-        FAKE_GLOW = new FakeGlow(70);
-    }
-
-    public FakeGlow(String id) {
-        super(String.valueOf(NamespacedKey.minecraft(id)));
-    }
 
     public FakeGlow(int id) {
-        super(String.valueOf(id));
+        super(id);
     }
 
     @Override

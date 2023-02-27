@@ -147,19 +147,11 @@ public class ItemMaker {
         return this;
     }
 
-    public ItemMaker setCustomModelData(int data) {
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setCustomModelData(data);
-
-        itemStack.setItemMeta(itemMeta);
-        return this;
-    }
-
     public ItemMaker addFakeGlow() {
         ItemMeta itemMeta = itemStack.getItemMeta();
 
         if (Bukkit.getVersion().contains("1.7")) {
-            itemMeta.addEnchant(FakeGlow.FAKE_GLOW, 2, true);
+            itemMeta.addEnchant(CC.FAKE_GLOW, 2, true);
         } else {
             itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             itemStack.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
