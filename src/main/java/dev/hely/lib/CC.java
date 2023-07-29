@@ -2,7 +2,6 @@ package dev.hely.lib;
 
 import dev.hely.lib.color.IridiumColorAPI;
 import lombok.experimental.UtilityClass;
-import org.bukkit.enchantments.Enchantment;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +22,6 @@ public class CC {
 
     public static final char ARROW_LEFT;
     public static final char ARROW_RIGHT;
-    public static Enchantment FAKE_GLOW;
 
     static {
         BOX = '\u2588';
@@ -34,7 +32,6 @@ public class CC {
 
         ARROW_LEFT = '\u00AB';
         ARROW_RIGHT = '\u00BB';
-        FAKE_GLOW = new FakeGlow(70);
     }
 
     public static String translate(String input) {

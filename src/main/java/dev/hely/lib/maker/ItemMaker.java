@@ -151,7 +151,8 @@ public class ItemMaker {
         ItemMeta itemMeta = itemStack.getItemMeta();
 
         if (Bukkit.getVersion().contains("1.7")) {
-            itemMeta.addEnchant(CC.FAKE_GLOW, 2, true);
+            Enchantment FAKE_GLOW = new FakeGlow(70);;
+            itemMeta.addEnchant(FAKE_GLOW, 2, true);
         } else {
             itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             itemStack.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
