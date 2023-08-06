@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created By LeandroSSJ
@@ -46,7 +47,7 @@ public abstract class PaginatedMenu extends Menu {
 
     @Override
     public Map<Integer, Button> getMenuContent(Player player) {
-        int min = Double.valueOf(Integer.valueOf((page - 1) * getMaxPerPage(player)).doubleValue()).intValue();
+        /*int min = Double.valueOf(Integer.valueOf((page - 1) * getMaxPerPage(player)).doubleValue()).intValue();
         int max = Double.valueOf(Integer.valueOf((page) * getMaxPerPage(player)).doubleValue()).intValue();
 
         int top = 0;
@@ -65,7 +66,29 @@ public abstract class PaginatedMenu extends Menu {
                     top = ind;
                 }
             }
+        }*/
+
+        int minIndex = (int)((this.page - 1) * (double)this.getMaxPerPage(player));
+        int maxIndex = (int)(this.page * (double)this.getMaxPerPage(player));
+        maxIndex += 4;
+        Map<Integer, Button> menuContent = new ConcurrentHashMap<>();
+        AtomicInteger index = new AtomicInteger(0);
+        int numberToAdd = this.page * 10 + 1;
+
+        for (Map.Entry<Integer, Button> entry : getPaginatedContent(player).entrySet()) {
+            int ind = index.getAndIncrement();
+            if (ind >= minIndex && ind < maxIndex) {
+                ind -= (int)(this.getMaxPerPage(player) * (double)(this.page - 1)) - 10;
+                if (ind == 16) {
+                    index.set((this.page == 1) ? 9 : (9 + numberToAdd));
+                }
+                if (ind == 25) {
+                    index.set((this.page == 1) ? 18 : (18 + numberToAdd));
+                }
+                menuContent.put(ind, entry.getValue());
+            }
         }
+
 
         Map<Integer, Button> global = getGlobalContent(player);
 
@@ -94,6 +117,13 @@ public abstract class PaginatedMenu extends Menu {
         menuContent.put(6, Button.getPlaceholder());
         menuContent.put(7, new PageButton(1, this));
         menuContent.put(8, Button.getPlaceholder());
+
+        menuContent.put(9, Button.getPlaceholder());
+        menuContent.put(17, Button.getPlaceholder());
+        menuContent.put(18, Button.getPlaceholder());
+        menuContent.put(26, Button.getPlaceholder());
+        menuContent.put(27, Button.getPlaceholder());
+        menuContent.put(35, Button.getPlaceholder());
 
         menuContent.put(36, Button.getPlaceholder());
         menuContent.put(37, new PageButton(-1, this));
