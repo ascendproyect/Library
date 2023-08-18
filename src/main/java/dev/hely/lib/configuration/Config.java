@@ -6,6 +6,7 @@ package dev.hely.lib.configuration;
  */
 
 import lombok.Getter;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,7 +19,7 @@ public class Config {
     private final File file;
     private YamlConfiguration configuration;
 
-    public Config(JavaPlugin plugin, String name) {
+    public Config(JavaPlugin plugin, String name) throws IOException, InvalidConfigurationException {
         file = new File(plugin.getDataFolder(), name + ".yml");
         if (!file.exists()) {
             plugin.saveResource(name + ".yml", false);
