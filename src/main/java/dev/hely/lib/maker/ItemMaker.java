@@ -150,12 +150,12 @@ public class ItemMaker {
     public ItemMaker addFakeGlow() {
         ItemMeta itemMeta = itemStack.getItemMeta();
 
-        if (Bukkit.getVersion().contains("1.7")) {
+        if (Bukkit.getVersion().contains("1.7") || Bukkit.getVersion().contains("1.8")) {
             Enchantment FAKE_GLOW = new FakeGlow(70);;
             itemMeta.addEnchant(FAKE_GLOW, 2, true);
         } else {
             itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            itemStack.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
+            addEnchant(Enchantment.ARROW_INFINITE, 1);
         }
 
         itemStack.setItemMeta(itemMeta);
