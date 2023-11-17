@@ -89,6 +89,7 @@ public class ItemMaker {
         itemStack.setItemMeta(itemMeta);
         return this;
     }
+
     public ItemMaker addLore(String lores) {
         ItemMeta itemMeta = itemStack.getItemMeta();
 

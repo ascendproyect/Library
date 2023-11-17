@@ -82,6 +82,9 @@ public class MenuListener implements Listener {
 
         if (openMenu != null) {
             openMenu.onClose(player);
+            if (openMenu.getBukkitTask() != null) {
+                openMenu.getBukkitTask().cancel();
+            }
             MenuManager.INSTANCE.getMenuData().remove(player.getUniqueId());
         }
     }

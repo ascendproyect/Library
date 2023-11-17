@@ -20,8 +20,12 @@ public enum MenuManager implements Manager {
 
     private final Map<UUID, Menu> menuData = new ConcurrentHashMap<>();
 
+    private JavaPlugin plugin;
+
     @Override
     public void onEnable(JavaPlugin plugin) {
+        this.plugin = plugin;
+
         plugin.getServer().getPluginManager().registerEvents(new MenuListener(plugin), plugin);
     }
 }

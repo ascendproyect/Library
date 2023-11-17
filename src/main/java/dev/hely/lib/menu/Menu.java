@@ -122,6 +122,12 @@ public abstract class Menu {
 
         onOpen(player);
         setClosed(false);
+
+        if (autoUpdate) {
+            if (bukkitTask == null) {
+                bukkitTask = MenuManager.INSTANCE.getPlugin().getServer().getScheduler().runTaskTimer(MenuManager.INSTANCE.getPlugin(), () -> openMenu(player), 20L, 20L);
+            }
+        }
     }
 
     public int getSize() {
