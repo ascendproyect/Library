@@ -44,7 +44,4 @@ public class Messages {
         Bukkit.getOnlinePlayers().stream().filter(player -> player.hasPermission(permission))
                 .forEach(player -> messages.forEach(message -> player.sendMessage(CC.translate(message))));
     }
-
-
-
 }

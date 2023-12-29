@@ -1,7 +1,7 @@
 package dev.hely.lib.command.sub;
 
 import dev.hely.lib.CC;
-import dev.hely.lib.JavaUtil;
+import dev.hely.lib.util.NumberUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.OfflinePlayer;
@@ -83,8 +83,8 @@ public abstract class SubCommand {
     }
 
     protected boolean checkNumber(CommandSender sender, String number) {
-        if(JavaUtil.tryParseInt(number) == null) {
-            sender.sendMessage(CC.translate("&cYou can only use integer values in this command usage!"));
+        if(NumberUtil.getInt(number) == null) {
+            sender.sendMessage(CC.translate("&c" + number + " &eis not a valid number."));
             return false;
         }
         return true;

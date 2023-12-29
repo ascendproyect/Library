@@ -3,7 +3,7 @@ package dev.hely.lib.maker;
 import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.Lists;
 import dev.hely.lib.CC;
-import dev.hely.lib.FakeGlow;
+import dev.hely.lib.util.FakeGlow;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;

@@ -1,4 +1,4 @@
-package dev.hely.lib;
+package dev.hely.lib.util;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.bukkit.Bukkit;
@@ -12,11 +12,11 @@ import java.util.concurrent.ThreadFactory;
  * @Date 5/1/2023 | 11:34
  **/
 
-public class Tasks {
+public class TaskUtil {
 
     private final JavaPlugin plugin;
 
-    public Tasks(JavaPlugin plugin) {
+    public TaskUtil(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 

@@ -1,4 +1,4 @@
-package dev.hely.lib;
+package dev.hely.lib.util;
 
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;

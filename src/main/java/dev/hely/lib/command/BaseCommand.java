@@ -1,7 +1,7 @@
 package dev.hely.lib.command;
 
 import dev.hely.lib.CC;
-import dev.hely.lib.JavaUtil;
+import dev.hely.lib.util.NumberUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.OfflinePlayer;
@@ -60,7 +60,7 @@ public abstract class BaseCommand extends BukkitCommand {
 
     protected boolean checkOfflinePlayer(CommandSender sender, OfflinePlayer offlinePlayer, String name) {
         if (!offlinePlayer.hasPlayedBefore() && !offlinePlayer.isOnline()) {
-            sender.sendMessage(CC.translate("&cThe player by the name of '&c&l" + name + "&c' has never connected to the server.."));
+            sender.sendMessage(CC.translate("&cThe player by the name of '&c&l" + name + "&c' has never connected to the server!"));
             return false;
         }
         return true;
@@ -75,8 +75,8 @@ public abstract class BaseCommand extends BukkitCommand {
     }
 
     protected boolean checkNumber(CommandSender sender, String number) {
-        if (JavaUtil.tryParseInt(number) == null) {
-            sender.sendMessage(CC.translate("&cYou can only use integer values in this command usage!"));
+        if (NumberUtil.getInt(number) == null) {
+            sender.sendMessage(CC.translate("&c" + number + " &eis not a valid number."));
             return false;
         }
         return true;
