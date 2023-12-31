@@ -1,4 +1,4 @@
 name: Library
-version: 2.1-SNAPSHOT
-author: Hely Development
-main: dev.hely.lib.example.Example
+version: 1.0-SNAPSHOT
+author: Ascend
+main: net.ascend.lib.example.Example
