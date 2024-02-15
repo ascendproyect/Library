@@ -44,7 +44,7 @@ public abstract class Menu {
 
     private ItemStack getItemStack(Player player, Button button) {
         ItemStack itemStack = button.getItemStack(player);
-        ItemStack skullItem = ItemMaker.of(Material.valueOf("SKULL_ITEM")).build();
+        ItemStack skullItem = ItemMaker.of("SKULL_ITEM").build();
 
         if (itemStack.getType() != skullItem.getType()) {
             ItemMeta itemMeta = itemStack.getItemMeta();

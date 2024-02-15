@@ -24,18 +24,18 @@ public class PageButton extends Button {
     public ItemStack getItemStack(Player player) {
         if (mod > 0) {
             if (hasNext(player)) {
-                return ItemMaker.of(Material.valueOf("CARPET"), 1, 5)
+                return ItemMaker.of("CARPET", 1, 5)
                         .setDisplayName("&aNext Page").build();
             } else {
-                return ItemMaker.of(Material.valueOf("CARPET"), 1, 7)
+                return ItemMaker.of("CARPET", 1, 7)
                         .setDisplayName("&cLast Page").build();
             }
         } else {
             if (hasPrevious(player)) {
-                return ItemMaker.of(Material.valueOf("CARPET"), 1, 14)
+                return ItemMaker.of("CARPET", 1, 14)
                         .setDisplayName("&aPrevious Page").build();
             } else {
-                return ItemMaker.of(Material.valueOf("CARPET"), 1, 7)
+                return ItemMaker.of("CARPET", 1, 7)
                         .setDisplayName("&cFirst Page").build();
             }
         }

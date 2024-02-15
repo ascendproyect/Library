@@ -22,27 +22,27 @@ import static net.ascend.lib.CC.translate;
 
 public class ItemMaker {
 
-    public static ItemMaker of(Material material) {
+    public static ItemMaker of(String material) {
         if (Bukkit.getVersion().contains("1.7")) {
-            return new ItemMaker(material, 1, (short) 0);
+            return new ItemMaker(Material.getMaterial(material), 1, (short) 0);
         } else {
-            return new ItemMaker(XMaterial.matchXMaterial(material).parseMaterial(), 1, (short) 0);
+            return new ItemMaker(XMaterial.matchXMaterial(material).get().parseMaterial(), 1, (short) 0);
         }
     }
 
-    public static ItemMaker of(Material material, int amount) {
+    public static ItemMaker of(String material, int amount) {
         if (Bukkit.getVersion().contains("1.7")) {
-            return new ItemMaker(material, amount, (short) 0);
+            return new ItemMaker(Material.getMaterial(material), amount, (short) 0);
         } else {
-            return new ItemMaker(XMaterial.matchXMaterial(material).parseMaterial(), amount, (short) 0);
+            return new ItemMaker(XMaterial.matchXMaterial(material).get().parseMaterial(), amount, (short) 0);
         }
     }
 
-    public static ItemMaker of(Material material, int amount, int data) {
+    public static ItemMaker of(String material, int amount, int data) {
         if (Bukkit.getVersion().contains("1.7")) {
-            return new ItemMaker(material, amount, (short) data);
+            return new ItemMaker(Material.getMaterial(material), amount, (short) data);
         } else {
-            return new ItemMaker(XMaterial.matchXMaterial(material).parseMaterial(), amount, (short) data);
+            return new ItemMaker(XMaterial.matchXMaterial(material).get().parseMaterial(), amount, (short) data);
         }
     }
 
@@ -57,11 +57,7 @@ public class ItemMaker {
     }
 
     private ItemMaker(Material material, int amount, short data) {
-        if (Bukkit.getVersion().contains("1.7")) {
-            this.itemStack = new ItemStack(material, amount, data);
-        } else {
-            this.itemStack = new ItemStack(XMaterial.matchXMaterial(material).parseMaterial(), amount, data);
-        }
+        this.itemStack = new ItemStack(material, amount, data);
     }
 
     public ItemMaker setAmount(int amount) {

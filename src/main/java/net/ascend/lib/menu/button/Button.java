@@ -38,11 +38,11 @@ public abstract class Button {
     public static Button getPlaceholder() {
         return new Button() {
             public ItemStack getItemStack(Player player) {
-                return ItemMaker.of(Material.valueOf("STAINED_GLASS_PANE"), 1, 7).setDisplayName(" ").build();            }
+                return ItemMaker.of("STAINED_GLASS_PANE", 1, 7).setDisplayName(" ").build();            }
         };
     }
 
-    public static Button getPlaceholder(Material material, int data, String title) {
+    public static Button getPlaceholder(String material, int data, String title) {
         return new Button() {
             @Override
             public ItemStack getItemStack(Player player) {

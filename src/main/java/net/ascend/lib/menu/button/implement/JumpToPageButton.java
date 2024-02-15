@@ -24,7 +24,7 @@ public class JumpToPageButton extends Button {
 
     @Override
     public ItemStack getItemStack(Player player) {
-        return ItemMaker.of(current ? Material.ENCHANTED_BOOK : Material.BOOK)
+        return ItemMaker.of(current ? "ENCHANTED_BOOK" : "BOOK")
                 .setDisplayName("&aPage " + page).build();
     }
 

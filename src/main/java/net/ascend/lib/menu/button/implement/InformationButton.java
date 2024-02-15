@@ -23,7 +23,7 @@ public class InformationButton extends Button {
 
     @Override
     public ItemStack getItemStack(Player player) {
-        return ItemMaker.of(Material.QUARTZ_BLOCK).setDisplayName("&aPage #" + menu.getPage() + " out of " + menu.getPage(player)).build();
+        return ItemMaker.of("QUARTZ_BLOCK").setDisplayName("&aPage #" + menu.getPage() + " out of " + menu.getPage(player)).build();
     }
 
     @Override

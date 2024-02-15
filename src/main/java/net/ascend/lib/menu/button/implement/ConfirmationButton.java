@@ -21,7 +21,7 @@ public class ConfirmationButton extends Button {
 
     @Override
     public ItemStack getItemStack(Player player) {
-        return ItemMaker.of(Material.valueOf("WOOL"), 1, confirm ? 5 : 14)
+        return ItemMaker.of("WOOL", 1, confirm ? 5 : 14)
                 .setDisplayName(confirm ? "&aConfirm" : "&cCancel").build();
     }
 
